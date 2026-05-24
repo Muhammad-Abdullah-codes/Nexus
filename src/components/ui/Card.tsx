@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface CardProps {
   children: React.ReactNode;
@@ -9,16 +9,18 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = ({
   children,
-  className = '',
+  className = "",
   onClick,
   hoverable = false,
 }) => {
-  const hoverableClass = hoverable ? 'transform hover:-translate-y-1 transition-transform duration-300 cursor-pointer' : '';
-  const clickableClass = onClick ? 'cursor-pointer' : '';
-  
+  const hoverableClass = hoverable
+    ? "transform hover:-translate-y-1 transition-transform duration-300 cursor-pointer"
+    : "";
+  const clickableClass = onClick ? "cursor-pointer" : "";
+
   return (
-    <div 
-      className={`bg-white rounded-lg shadow-md overflow-hidden ${hoverableClass} ${clickableClass} ${className}`}
+    <div
+      className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-colors border border-transparent dark:border-gray-700 ${hoverableClass} ${clickableClass} ${className}`}
       onClick={onClick}
     >
       {children}
@@ -33,10 +35,12 @@ interface CardHeaderProps {
 
 export const CardHeader: React.FC<CardHeaderProps> = ({
   children,
-  className = '',
+  className = "",
 }) => {
   return (
-    <div className={`px-6 py-4 border-b border-gray-200 ${className}`}>
+    <div
+      className={`px-6 py-4 border-b border-gray-200 dark:border-gray-700 transition-colors ${className}`}
+    >
       {children}
     </div>
   );
@@ -49,13 +53,9 @@ interface CardBodyProps {
 
 export const CardBody: React.FC<CardBodyProps> = ({
   children,
-  className = '',
+  className = "",
 }) => {
-  return (
-    <div className={`px-6 py-4 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`px-6 py-4 ${className}`}>{children}</div>;
 };
 
 interface CardFooterProps {
@@ -65,10 +65,12 @@ interface CardFooterProps {
 
 export const CardFooter: React.FC<CardFooterProps> = ({
   children,
-  className = '',
+  className = "",
 }) => {
   return (
-    <div className={`px-6 py-4 border-t border-gray-200 ${className}`}>
+    <div
+      className={`px-6 py-4 border-t border-gray-200 dark:border-gray-700 transition-colors ${className}`}
+    >
       {children}
     </div>
   );

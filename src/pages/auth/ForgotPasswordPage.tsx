@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, ArrowLeft } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Mail, ArrowLeft } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
+import { Button } from "../../components/ui/Button";
+import { Input } from "../../components/ui/Input";
 
 export const ForgotPasswordPage: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const { forgotPassword } = useAuth();
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       await forgotPassword(email);
       setIsSubmitted(true);
@@ -25,27 +25,27 @@ export const ForgotPasswordPage: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="text-center">
-            <Mail className="mx-auto h-12 w-12 text-primary-600" />
-            <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            <Mail className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400" />
+            <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
               Check your email
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               We've sent password reset instructions to {email}
             </p>
           </div>
-          
-          <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+          <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
             <div className="space-y-4">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Didn't receive the email? Check your spam folder or try again.
               </p>
-              
+
               <Button
                 variant="outline"
                 fullWidth
@@ -53,7 +53,7 @@ export const ForgotPasswordPage: React.FC = () => {
               >
                 Try again
               </Button>
-              
+
               <Link to="/login">
                 <Button
                   variant="ghost"
@@ -69,21 +69,22 @@ export const ForgotPasswordPage: React.FC = () => {
       </div>
     );
   }
-  
+
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <Mail className="mx-auto h-12 w-12 text-primary-600" />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          <Mail className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400" />
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
             Forgot your password?
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Enter your email address and we'll send you instructions to reset your password.
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Enter your email address and we'll send you instructions to reset
+            your password.
           </p>
         </div>
-        
-        <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+        <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
               label="Email address"
@@ -94,15 +95,11 @@ export const ForgotPasswordPage: React.FC = () => {
               fullWidth
               startAdornment={<Mail size={18} />}
             />
-            
-            <Button
-              type="submit"
-              fullWidth
-              isLoading={isLoading}
-            >
+
+            <Button type="submit" fullWidth isLoading={isLoading}>
               Send reset instructions
             </Button>
-            
+
             <Link to="/login">
               <Button
                 variant="ghost"

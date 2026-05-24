@@ -1,10 +1,17 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { 
-  Home, Building2, CircleDollarSign, Users, MessageCircle, 
-  Bell, FileText, Settings, HelpCircle
-} from 'lucide-react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import {
+  Home,
+  Building2,
+  CircleDollarSign,
+  Users,
+  MessageCircle,
+  Bell,
+  FileText,
+  Settings,
+  HelpCircle,
+} from "lucide-react";
 
 interface SidebarItemProps {
   to: string;
@@ -16,11 +23,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon, text }) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => 
+      className={({ isActive }) =>
         `flex items-center py-2.5 px-4 rounded-md transition-colors duration-200 ${
-          isActive 
-            ? 'bg-primary-50 text-primary-700' 
-            : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+          isActive
+            ? "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+            : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
         }`
       }
     >
@@ -32,38 +39,55 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon, text }) => {
 
 export const Sidebar: React.FC = () => {
   const { user } = useAuth();
-  
+
   if (!user) return null;
-  
+
   // Define sidebar items based on user role
   const entrepreneurItems = [
-    { to: '/dashboard/entrepreneur', icon: <Home size={20} />, text: 'Dashboard' },
-    { to: '/profile/entrepreneur/' + user.id, icon: <Building2 size={20} />, text: 'My Startup' },
-    { to: '/investors', icon: <CircleDollarSign size={20} />, text: 'Find Investors' },
-    { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
-    { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
-    { to: '/documents', icon: <FileText size={20} />, text: 'Documents' },
+    {
+      to: "/dashboard/entrepreneur",
+      icon: <Home size={20} />,
+      text: "Dashboard",
+    },
+    {
+      to: "/profile/entrepreneur/" + user.id,
+      icon: <Building2 size={20} />,
+      text: "My Startup",
+    },
+    {
+      to: "/investors",
+      icon: <CircleDollarSign size={20} />,
+      text: "Find Investors",
+    },
+    { to: "/messages", icon: <MessageCircle size={20} />, text: "Messages" },
+    { to: "/notifications", icon: <Bell size={20} />, text: "Notifications" },
+    { to: "/documents", icon: <FileText size={20} />, text: "Documents" },
   ];
-  
+
   const investorItems = [
-    { to: '/dashboard/investor', icon: <Home size={20} />, text: 'Dashboard' },
-    { to: '/profile/investor/' + user.id, icon: <CircleDollarSign size={20} />, text: 'My Portfolio' },
-    { to: '/entrepreneurs', icon: <Users size={20} />, text: 'Find Startups' },
-    { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
-    { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
-    { to: '/deals', icon: <FileText size={20} />, text: 'Deals' },
+    { to: "/dashboard/investor", icon: <Home size={20} />, text: "Dashboard" },
+    {
+      to: "/profile/investor/" + user.id,
+      icon: <CircleDollarSign size={20} />,
+      text: "My Portfolio",
+    },
+    { to: "/entrepreneurs", icon: <Users size={20} />, text: "Find Startups" },
+    { to: "/messages", icon: <MessageCircle size={20} />, text: "Messages" },
+    { to: "/notifications", icon: <Bell size={20} />, text: "Notifications" },
+    { to: "/deals", icon: <FileText size={20} />, text: "Deals" },
   ];
-  
-  const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;
-  
+
+  const sidebarItems =
+    user.role === "entrepreneur" ? entrepreneurItems : investorItems;
+
   // Common items at the bottom
   const commonItems = [
-    { to: '/settings', icon: <Settings size={20} />, text: 'Settings' },
-    { to: '/help', icon: <HelpCircle size={20} />, text: 'Help & Support' },
+    { to: "/settings", icon: <Settings size={20} />, text: "Settings" },
+    { to: "/help", icon: <HelpCircle size={20} />, text: "Help & Support" },
   ];
-  
+
   return (
-    <div className="w-64 bg-white h-full border-r border-gray-200 hidden md:block">
+    <div className="w-64 bg-white dark:bg-gray-900 h-full border-r border-gray-200 dark:border-gray-800 hidden md:block transition-colors duration-200">
       <div className="h-full flex flex-col">
         <div className="flex-1 py-4 overflow-y-auto">
           <div className="px-3 space-y-1">
@@ -76,9 +100,9 @@ export const Sidebar: React.FC = () => {
               />
             ))}
           </div>
-          
+
           <div className="mt-8 px-3">
-            <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <h3 className="px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
               Settings
             </h3>
             <div className="mt-2 space-y-1">
@@ -93,14 +117,18 @@ export const Sidebar: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        <div className="p-4 border-t border-gray-200">
-          <div className="bg-gray-50 rounded-md p-3">
-            <p className="text-xs text-gray-600">Need assistance?</p>
-            <h4 className="text-sm font-medium text-gray-900 mt-1">Contact Support</h4>
-            <a 
-              href="mailto:support@businessnexus.com" 
-              className="mt-2 inline-flex items-center text-xs font-medium text-primary-600 hover:text-primary-500"
+
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 transition-colors">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-md p-3 transition-colors">
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              Need assistance?
+            </p>
+            <h4 className="text-sm font-medium text-gray-900 dark:text-white mt-1">
+              Contact Support
+            </h4>
+            <a
+              href="mailto:support@businessnexus.com"
+              className="mt-2 inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
             >
               support@businessnexus.com
             </a>
