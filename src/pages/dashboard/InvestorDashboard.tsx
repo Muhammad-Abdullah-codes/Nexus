@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Users, PieChart, Filter, Search, PlusCircle } from "lucide-react";
+import {
+  Users,
+  PieChart,
+  Filter,
+  Search,
+  PlusCircle,
+  Wallet,
+  ArrowUpRight,
+} from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { Card, CardBody, CardHeader } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
@@ -102,7 +110,35 @@ export const InvestorDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Stats summary */}
+      {/* FIXED: Wallet Balance Card in its own isolated grid row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-md border-none relative overflow-hidden md:col-span-1">
+          <CardBody>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-sm font-medium text-gray-300">
+                Wallet Balance
+              </h3>
+              <div className="p-2 bg-gray-800 rounded-full">
+                <Wallet size={16} className="text-blue-400" />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold">$130,500.00</h2>
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-xs text-green-400 flex items-center">
+                <ArrowUpRight size={14} className="mr-1" /> +2.4% this week
+              </p>
+              <Link
+                to="/dashboard/investor/wallet"
+                className="text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                View Wallet &rarr;
+              </Link>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+
+      {/* Stats summary - Restored back to 3 columns */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800/50">
           <CardBody>

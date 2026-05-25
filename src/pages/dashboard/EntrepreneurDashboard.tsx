@@ -7,6 +7,8 @@ import {
   TrendingUp,
   AlertCircle,
   PlusCircle,
+  Wallet,
+  ArrowUpRight,
 } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { Card, CardBody, CardHeader } from "../../components/ui/Card";
@@ -66,6 +68,33 @@ export const EntrepreneurDashboard: React.FC = () => {
         <Link to="/investors">
           <Button leftIcon={<PlusCircle size={18} />}>Find Investors</Button>
         </Link>
+      </div>
+
+      {/* Wallet Balance Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg md:col-span-1 border-none relative overflow-hidden">
+          <CardBody>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-medium text-gray-300">Wallet Balance</h3>
+              <div className="p-2 bg-gray-800 rounded-full">
+                <Wallet size={20} className="text-blue-400" />
+              </div>
+            </div>
+            <h2 className="text-3xl font-bold">$130,500.00</h2>
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-sm text-green-400 flex items-center">
+                <ArrowUpRight size={16} className="mr-1" /> +2.4% this week
+              </p>
+              {/* Added Navigation Link Here */}
+              <Link
+                to="/dashboard/entrepreneur/wallet"
+                className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Manage Wallet &rarr;
+              </Link>
+            </div>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Summary cards */}

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -32,6 +31,7 @@ import { SettingsPage } from "./pages/settings/SettingsPage";
 import { HelpPage } from "./pages/help/HelpPage";
 import { DealsPage } from "./pages/deals/DealsPage";
 import { CalendarPage } from "./pages/calendar/CalendarPage";
+import { WalletPage } from "./pages/payments/WalletPage";
 
 // Chat Pages
 import { ChatPage } from "./pages/chat/ChatPage";
@@ -48,7 +48,10 @@ function App() {
           {/* Dashboard Routes */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
+            <Route path="entrepreneur/wallet" element={<WalletPage />} />
+
             <Route path="investor" element={<InvestorDashboard />} />
+            <Route path="investor/wallet" element={<WalletPage />} />
           </Route>
 
           {/* Profile Routes */}

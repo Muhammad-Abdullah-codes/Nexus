@@ -2,13 +2,11 @@ import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import {
   Upload,
-  Trash2,
   FileSignature,
   Save,
   FileText,
   CheckCircle,
   Clock,
-  Download,
 } from "lucide-react";
 import { Card, CardHeader, CardBody } from "../../components/ui/Card";
 import { Button } from "../../components/ui/Button";
