@@ -43,7 +43,7 @@ Business Nexus is a modern, responsive frontend web application designed to seam
 
 ## 📂 Architecture Overview
 
-For a detailed breakdown of the component structure, routing methodology, and data flow, please refer to the [Architecture Documentation](architecture.md).
+For a detailed breakdown of the component structure, routing methodology, and data flow, please refer to the [Architecture Documentation](ARCHITECTURE.md).
 
 ---
 
