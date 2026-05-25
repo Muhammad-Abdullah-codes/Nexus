@@ -28,21 +28,21 @@ export const ForgotPasswordPage: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="text-center">
-            <Mail className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400" />
-            <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+            <Mail className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-blue-600 dark:text-blue-400" />
+            <h2 className="mt-4 sm:mt-6 text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
               Check your email
             </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 px-2">
               We've sent password reset instructions to {email}
             </p>
           </div>
 
-          <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
+          <div className="mt-8 bg-white dark:bg-gray-800 py-6 sm:py-8 px-4 sm:px-10 shadow sm:rounded-lg border border-transparent dark:border-gray-700">
             <div className="space-y-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
                 Didn't receive the email? Check your spam folder or try again.
               </p>
 
@@ -54,7 +54,7 @@ export const ForgotPasswordPage: React.FC = () => {
                 Try again
               </Button>
 
-              <Link to="/login">
+              <Link to="/login" className="block mt-2">
                 <Button
                   variant="ghost"
                   fullWidth
@@ -71,20 +71,20 @@ export const ForgotPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <Mail className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400" />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+          <Mail className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-blue-600 dark:text-blue-400" />
+          <h2 className="mt-4 sm:mt-6 text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
             Forgot your password?
           </h2>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 px-2">
             Enter your email address and we'll send you instructions to reset
             your password.
           </p>
         </div>
 
-        <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
+        <div className="mt-8 bg-white dark:bg-gray-800 py-6 sm:py-8 px-4 sm:px-10 shadow sm:rounded-lg border border-transparent dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
               label="Email address"
@@ -100,7 +100,7 @@ export const ForgotPasswordPage: React.FC = () => {
               Send reset instructions
             </Button>
 
-            <Link to="/login">
+            <Link to="/login" className="block mt-4">
               <Button
                 variant="ghost"
                 fullWidth

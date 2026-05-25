@@ -11,20 +11,27 @@ import {
   FileText,
   Settings,
   HelpCircle,
+  Calendar,
 } from "lucide-react";
 
 interface SidebarItemProps {
   to: string;
   icon: React.ReactNode;
   text: string;
+  className?: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon, text }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  to,
+  icon,
+  text,
+  className,
+}) => {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex items-center py-2.5 px-4 rounded-md transition-colors duration-200 ${
+        `flex items-center py-2.5 px-4 rounded-md transition-colors duration-200 ${className || ""} ${
           isActive
             ? "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
             : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
@@ -42,12 +49,12 @@ export const Sidebar: React.FC = () => {
 
   if (!user) return null;
 
-  // Define sidebar items based on user role
   const entrepreneurItems = [
     {
       to: "/dashboard/entrepreneur",
       icon: <Home size={20} />,
       text: "Dashboard",
+      className: "tour-wallet",
     },
     {
       to: "/profile/entrepreneur/" + user.id,
@@ -59,45 +66,85 @@ export const Sidebar: React.FC = () => {
       icon: <CircleDollarSign size={20} />,
       text: "Find Investors",
     },
-    { to: "/messages", icon: <MessageCircle size={20} />, text: "Messages" },
+    {
+      to: "/calendar",
+      icon: <Calendar size={20} />,
+      text: "Calendar",
+      className: "tour-calendar",
+    },
+    {
+      to: "/messages",
+      icon: <MessageCircle size={20} />,
+      text: "Messages",
+      className: "tour-video",
+    },
     { to: "/notifications", icon: <Bell size={20} />, text: "Notifications" },
-    { to: "/documents", icon: <FileText size={20} />, text: "Documents" },
+    {
+      to: "/documents",
+      icon: <FileText size={20} />,
+      text: "Documents",
+      className: "tour-documents",
+    },
   ];
 
   const investorItems = [
-    { to: "/dashboard/investor", icon: <Home size={20} />, text: "Dashboard" },
+    {
+      to: "/dashboard/investor",
+      icon: <Home size={20} />,
+      text: "Dashboard",
+      className: "tour-wallet",
+    },
     {
       to: "/profile/investor/" + user.id,
       icon: <CircleDollarSign size={20} />,
       text: "My Portfolio",
     },
     { to: "/entrepreneurs", icon: <Users size={20} />, text: "Find Startups" },
-    { to: "/messages", icon: <MessageCircle size={20} />, text: "Messages" },
+    {
+      to: "/calendar",
+      icon: <Calendar size={20} />,
+      text: "Calendar",
+      className: "tour-calendar",
+    },
+    {
+      to: "/messages",
+      icon: <MessageCircle size={20} />,
+      text: "Messages",
+      className: "tour-video",
+    },
     { to: "/notifications", icon: <Bell size={20} />, text: "Notifications" },
-    { to: "/deals", icon: <FileText size={20} />, text: "Deals" },
+    {
+      to: "/deals",
+      icon: <FileText size={20} />,
+      text: "Deals",
+      className: "tour-documents",
+    },
   ];
 
   const sidebarItems =
     user.role === "entrepreneur" ? entrepreneurItems : investorItems;
 
-  // Common items at the bottom
   const commonItems = [
-    { to: "/settings", icon: <Settings size={20} />, text: "Settings" },
+    {
+      to: "/settings",
+      icon: <Settings size={20} />,
+      text: "Settings",
+      className: "tour-security",
+    },
     { to: "/help", icon: <HelpCircle size={20} />, text: "Help & Support" },
   ];
 
   return (
-    <div className="w-64 bg-white dark:bg-gray-900 h-full border-r border-gray-200 dark:border-gray-800 hidden md:block transition-colors duration-200">
-      <div className="h-full flex flex-col">
-        <div className="flex-1 py-4 overflow-y-auto">
+    // Outer div maintains the full-height background and border down the page
+    <div className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 hidden md:block transition-colors duration-200">
+      {/* Inner div now fits its contents naturally without forcing whitespace. */}
+      {/* top-6 adds a slight padding from the top edge when you scroll. */}
+      <div className="sticky top-6 flex flex-col">
+        {/* Top Section: Links */}
+        <div className="py-4 overflow-hidden">
           <div className="px-3 space-y-1">
             {sidebarItems.map((item, index) => (
-              <SidebarItem
-                key={index}
-                to={item.to}
-                icon={item.icon}
-                text={item.text}
-              />
+              <SidebarItem key={index} {...item} />
             ))}
           </div>
 
@@ -107,19 +154,15 @@ export const Sidebar: React.FC = () => {
             </h3>
             <div className="mt-2 space-y-1">
               {commonItems.map((item, index) => (
-                <SidebarItem
-                  key={index}
-                  to={item.to}
-                  icon={item.icon}
-                  text={item.text}
-                />
+                <SidebarItem key={index} {...item} />
               ))}
             </div>
           </div>
         </div>
 
-        <div className="p-4 border-t border-gray-200 dark:border-gray-800 transition-colors">
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-md p-3 transition-colors">
+        {/* Bottom Section: Support Box now sits directly under Settings */}
+        <div className="px-4 pb-4 transition-colors mt-2">
+          <div className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-md p-3 transition-colors">
             <p className="text-xs text-gray-600 dark:text-gray-400">
               Need assistance?
             </p>

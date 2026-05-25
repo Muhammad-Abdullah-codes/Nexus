@@ -67,17 +67,17 @@ export const ResetPasswordPage: React.FC = () => {
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
               Invalid reset link
             </h2>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               This password reset link is invalid or has expired.
             </p>
             <Button
-              className="mt-4"
+              className="mt-4 w-full sm:w-auto"
               onClick={() => navigate("/forgot-password")}
             >
               Request new reset link
@@ -89,11 +89,11 @@ export const ResetPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <Lock className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400" />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+          <Lock className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-blue-600 dark:text-blue-400" />
+          <h2 className="mt-4 sm:mt-6 text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
             Reset your password
           </h2>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -101,7 +101,7 @@ export const ResetPasswordPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
+        <div className="mt-6 sm:mt-8 bg-white dark:bg-gray-800 py-6 sm:py-8 px-4 sm:px-10 shadow sm:rounded-lg border border-transparent dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-1">
               <Input
@@ -134,7 +134,7 @@ export const ResetPasswordPage: React.FC = () => {
                     />
                   ))}
                 </div>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-2">
+                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-2 leading-tight">
                   Must be 8+ characters, with a number, uppercase letter, and
                   special character.
                 </p>

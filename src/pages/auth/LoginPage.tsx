@@ -67,17 +67,17 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-12 h-12 bg-blue-600 rounded-md flex items-center justify-center">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-md flex items-center justify-center">
             <svg
-              width="32"
-              height="32"
+              width="28"
+              height="28"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-white"
+              className="text-white sm:w-8 sm:h-8"
             >
               <path
                 d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z"
@@ -96,19 +96,19 @@ export const LoginPage: React.FC = () => {
             </svg>
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h2 className="mt-4 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
           Sign in to Business Nexus
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
           Connect with investors and entrepreneurs
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700 transition-colors">
+      <div className="mt-6 sm:mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white dark:bg-gray-800 py-6 sm:py-8 px-4 sm:px-10 shadow sm:rounded-lg border border-transparent dark:border-gray-700 transition-colors">
           {error && (
-            <div className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-500 text-red-700 dark:text-red-400 px-4 py-3 rounded-md flex items-start">
-              <AlertCircle size={18} className="mr-2 mt-0.5" />
+            <div className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-500 text-red-700 dark:text-red-400 px-4 py-3 rounded-md flex items-start text-sm">
+              <AlertCircle size={18} className="mr-2 mt-0.5 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
@@ -116,37 +116,40 @@ export const LoginPage: React.FC = () => {
           {step === 1 ? (
             <>
               <form
-                className="space-y-6 animate-fade-in"
+                className="space-y-5 sm:space-y-6 animate-fade-in"
                 onSubmit={handleCredentialsSubmit}
               >
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     I am a
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
                     <button
                       type="button"
-                      className={`py-3 px-4 border rounded-md flex items-center justify-center transition-colors ${
+                      className={`py-2.5 sm:py-3 px-2 sm:px-4 border rounded-md flex flex-col sm:flex-row items-center justify-center transition-colors text-xs sm:text-sm ${
                         role === "entrepreneur"
                           ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
                           : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                       }`}
                       onClick={() => setRole("entrepreneur")}
                     >
-                      <Building2 size={18} className="mr-2" />
+                      <Building2 size={16} className="mb-1 sm:mb-0 sm:mr-2" />
                       Entrepreneur
                     </button>
 
                     <button
                       type="button"
-                      className={`py-3 px-4 border rounded-md flex items-center justify-center transition-colors ${
+                      className={`py-2.5 sm:py-3 px-2 sm:px-4 border rounded-md flex flex-col sm:flex-row items-center justify-center transition-colors text-xs sm:text-sm ${
                         role === "investor"
                           ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
                           : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                       }`}
                       onClick={() => setRole("investor")}
                     >
-                      <CircleDollarSign size={18} className="mr-2" />
+                      <CircleDollarSign
+                        size={16}
+                        className="mb-1 sm:mb-0 sm:mr-2"
+                      />
                       Investor
                     </button>
                   </div>
@@ -171,7 +174,7 @@ export const LoginPage: React.FC = () => {
                   fullWidth
                 />
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                   <div className="flex items-center">
                     <input
                       id="remember-me"
@@ -188,7 +191,6 @@ export const LoginPage: React.FC = () => {
                   </div>
 
                   <div className="text-sm">
-                    {/* FIXED: Replaced dummy <a> tag with React Router <Link> */}
                     <Link
                       to="/forgot-password"
                       className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500"
@@ -220,7 +222,7 @@ export const LoginPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Button
                     variant="outline"
                     onClick={() => fillDemoCredentials("entrepreneur")}
@@ -251,7 +253,7 @@ export const LoginPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-2 text-center">
+                <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Don't have an account?{" "}
                     <Link
@@ -265,17 +267,17 @@ export const LoginPage: React.FC = () => {
               </div>
             </>
           ) : (
-            <div className="text-center animate-fade-in py-4">
-              <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-center animate-fade-in py-2 sm:py-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <KeyRound
-                  size={28}
-                  className="text-blue-600 dark:text-blue-400"
+                  size={24}
+                  className="text-blue-600 dark:text-blue-400 sm:w-7 sm:h-7"
                 />
               </div>
-              <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+              <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                 Two-Factor Authentication
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-6">
                 Enter the 6-digit code sent to your registered device.
               </p>
 
@@ -289,7 +291,7 @@ export const LoginPage: React.FC = () => {
                   fullWidth
                   required
                   maxLength={6}
-                  className="text-center text-2xl tracking-[0.5em] font-mono"
+                  className="text-center text-xl sm:text-2xl tracking-[0.3em] sm:tracking-[0.5em] font-mono"
                 />
 
                 <Button
@@ -304,7 +306,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="text-sm text-blue-600 dark:text-blue-400 mt-4 hover:underline"
+                  className="text-sm text-blue-600 dark:text-blue-400 mt-4 hover:underline block w-full text-center"
                 >
                   &larr; Back to login
                 </button>

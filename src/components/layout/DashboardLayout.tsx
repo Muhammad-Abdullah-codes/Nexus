@@ -5,14 +5,15 @@ import { useTheme } from "../../context/ThemeContext";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 import { Moon, Sun } from "lucide-react";
+import { TourGuide } from "../guide/TourGuide";
 
 export const DashboardLayout: React.FC = () => {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors">
+      <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 dark:border-blue-400"></div>
       </div>
     );
@@ -23,15 +24,20 @@ export const DashboardLayout: React.FC = () => {
   }
 
   return (
+    // FIXED: Restored to min-h-screen so the document can scroll naturally.
+    // Removed overflow-hidden so the browser's main scrollbar takes over.
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200 flex flex-col">
+      <TourGuide />
+
       <Navbar />
 
-      <div className="flex-1 flex overflow-hidden">
+      {/* Main Flex Wrapper - Notice no overflow properties here! */}
+      <div className="flex-1 flex">
         <Sidebar />
 
-        <main className="flex-1 overflow-y-auto p-6 relative">
+        {/* Removed overflow-y-auto. This main tag will now stretch naturally. */}
+        <main className="flex-1 p-6 relative">
           <div className="max-w-7xl mx-auto">
-            {/* Quick Theme Toggle Component */}
             <div className="flex justify-end mb-4">
               <button
                 onClick={toggleTheme}

@@ -72,23 +72,34 @@ export const EntrepreneurDashboard: React.FC = () => {
 
       {/* Wallet Balance Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg md:col-span-1 border-none relative overflow-hidden">
+        <Card className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm md:col-span-1 border border-gray-200 dark:border-gray-800 relative overflow-hidden transition-colors duration-200">
           <CardBody>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medium text-gray-300">Wallet Balance</h3>
-              <div className="p-2 bg-gray-800 rounded-full">
-                <Wallet size={20} className="text-blue-400" />
+              {/* Updated subtitle color to adapt */}
+              <h3 className="font-medium text-gray-500 dark:text-gray-400">
+                Wallet Balance
+              </h3>
+              {/* Updated icon background and icon color */}
+              <div className="p-2 bg-blue-50 dark:bg-gray-800 rounded-full transition-colors duration-200">
+                <Wallet
+                  size={20}
+                  className="text-blue-600 dark:text-blue-400"
+                />
               </div>
             </div>
+
             <h2 className="text-3xl font-bold">$130,500.00</h2>
+
             <div className="flex items-center justify-between mt-4">
-              <p className="text-sm text-green-400 flex items-center">
+              {/* Updated green text to be slightly darker in light mode for better contrast */}
+              <p className="text-sm text-green-600 dark:text-green-400 flex items-center font-medium">
                 <ArrowUpRight size={16} className="mr-1" /> +2.4% this week
               </p>
-              {/* Added Navigation Link Here */}
+
+              {/* Added Navigation Link Here with responsive hover colors */}
               <Link
                 to="/dashboard/entrepreneur/wallet"
-                className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
               >
                 Manage Wallet &rarr;
               </Link>
