@@ -2,6 +2,8 @@
 
 Business Nexus is a modern, responsive frontend web application designed to seamlessly connect Startup Founders (Entrepreneurs) with Venture Capitalists (Investors). It provides a secure, role-based dashboard for deal-flow management, communication, and financial tracking.
 
+**🌐 Live Preview:** [https://nexus-nine-jade.vercel.app/](https://nexus-nine-jade.vercel.app/)
+
 ---
 
 ## 🚀 Features
@@ -61,6 +63,7 @@ Follow these instructions to run the project locally.
    ```bash
     git clone [https://github.com/Muhammad-Abdullah-codes/Nexus.git](https://github.com/Muhammad-Abdullah-codes/Nexus.git)
     cd business-nexus
+
    ```
 
 2. **Install dependencies**
