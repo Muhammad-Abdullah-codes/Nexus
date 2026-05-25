@@ -15,12 +15,43 @@ export const ResetPasswordPage: React.FC = () => {
   const { resetPassword } = useAuth();
   const token = searchParams.get("token");
 
+  // --- Password Strength Logic ---
+  const calculateStrength = (pass: string) => {
+    let score = 0;
+    if (!pass) return score;
+    if (pass.length >= 8) score += 1;
+    if (/[A-Z]/.test(pass)) score += 1;
+    if (/[0-9]/.test(pass)) score += 1;
+    if (/[^A-Za-z0-9]/.test(pass)) score += 1;
+    return score;
+  };
+
+  const strength = calculateStrength(password);
+
+  const getStrengthDisplay = () => {
+    if (strength === 0)
+      return {
+        color: "bg-gray-200 dark:bg-gray-700",
+        text: "Enter a password",
+      };
+    if (strength === 1) return { color: "bg-red-500", text: "Weak" };
+    if (strength === 2) return { color: "bg-yellow-500", text: "Fair" };
+    if (strength === 3) return { color: "bg-blue-500", text: "Good" };
+    return { color: "bg-green-500", text: "Strong" };
+  };
+
+  const strengthData = getStrengthDisplay();
+  // -------------------------------
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!token) return;
-
     if (password !== confirmPassword) return;
+    if (strength < 3) {
+      alert("Please choose a stronger password.");
+      return;
+    }
 
     setIsLoading(true);
 
@@ -72,15 +103,43 @@ export const ResetPasswordPage: React.FC = () => {
 
         <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-transparent dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <Input
-              label="New password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              fullWidth
-              startAdornment={<Lock size={18} />}
-            />
+            <div className="space-y-1">
+              <Input
+                label="New password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                fullWidth
+                startAdornment={<Lock size={18} />}
+              />
+
+              {/* Added Strength Meter */}
+              <div className="mt-2 mb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                    Password Strength
+                  </span>
+                  <span
+                    className={`text-xs font-bold ${password ? strengthData.color.replace("bg-", "text-") : "text-gray-400"}`}
+                  >
+                    {strengthData.text}
+                  </span>
+                </div>
+                <div className="flex gap-1 h-1.5">
+                  {[1, 2, 3, 4].map((level) => (
+                    <div
+                      key={level}
+                      className={`flex-1 rounded-full transition-colors duration-300 ${strength >= level ? strengthData.color : "bg-gray-200 dark:bg-gray-700"}`}
+                    />
+                  ))}
+                </div>
+                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-2">
+                  Must be 8+ characters, with a number, uppercase letter, and
+                  special character.
+                </p>
+              </div>
+            </div>
 
             <Input
               label="Confirm new password"
@@ -97,7 +156,13 @@ export const ResetPasswordPage: React.FC = () => {
               }
             />
 
-            <Button type="submit" fullWidth isLoading={isLoading}>
+            {/* Submit button disabled until password is strong enough */}
+            <Button
+              type="submit"
+              fullWidth
+              isLoading={isLoading}
+              disabled={strength < 3 || password !== confirmPassword}
+            >
               Reset password
             </Button>
           </form>
